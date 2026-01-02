@@ -1,4 +1,8 @@
 #include "map.h"
+#include <raylib.h>
+
+int World_Map[16][16];
+const int Tile_Size = 30;
 
 //first initialization
 void MapInit(void)
@@ -45,4 +49,21 @@ void MapInit(void)
     World_Map[11][9] = 1;
     World_Map[11][13] = 1;
     World_Map[11][14] = 1;
+}
+
+//Drawing the map
+void DrawMap()
+{
+    for(int i = 0; i < 16; i++){
+        for(int j = 0; j < 16; j++){
+            if(World_Map[i][j]==1){
+                DrawRectangle(j*Tile_Size, i*Tile_Size, Tile_Size, Tile_Size, GRAY);
+                DrawRectangleLines(j*Tile_Size, i*Tile_Size, Tile_Size, Tile_Size, BLACK);
+            }
+            else{
+                DrawRectangle(j*Tile_Size, i*Tile_Size, Tile_Size, Tile_Size, WHITE);
+                DrawRectangleLines(j*Tile_Size, i*Tile_Size, Tile_Size, Tile_Size, BLACK);
+            }
+        }
+    }
 }

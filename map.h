@@ -1,5 +1,7 @@
-int World_Map[16][16];
-const int Tile_Size = 20;
+#ifndef MAP_H
+#define MAP_H
 
 void MapInit(void);
+void DrawMap(void);
 
+#endif
