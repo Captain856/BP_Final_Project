@@ -6,22 +6,30 @@
 vector1 pos;
 vector1 dir;
 vector2 plane;
-float radius;
+float bigradius;
+float littleradius;
 float Speed;
 
 void PlayerInit(void)
 {
-    pos.x = 9.5*Tile_Size;
-    pos.y = 5.5*Tile_Size;
-    dir.x = 0.0*Tile_Size;
-    dir.y = 1.0*Tile_Size;
-    radius = 10;
+    pos.x = 9.5;
+    pos.y = 5.5;
+    dir.x = 0.0;
+    dir.y = 1.0;
+    bigradius = 10;
+    littleradius = 6;
 }
 
-void DrawPlayer(void)
+void DrawBigPlayer(void)
 {
-    DrawCircle(pos.x+240, pos.y+30, radius, RED);
-    DrawLine(pos.x+240, pos.y+30, pos.x+dir.x+240, pos.y-dir.y+30, RED);
+    DrawCircle(pos.x*Big_Tile_Size+240, pos.y*Big_Tile_Size+30, bigradius, RED);
+    DrawLine(pos.x*Big_Tile_Size+240, pos.y*Big_Tile_Size+30, pos.x*Big_Tile_Size+dir.x*Big_Tile_Size+240, pos.y*Big_Tile_Size-dir.y*Big_Tile_Size+30, RED);
+}
+
+void DrawLittlePlayer(void)
+{
+    DrawCircle(pos.x*Little_Tile_Size+720, pos.y*Little_Tile_Size+16, littleradius, RED);
+    DrawLine(pos.x*Little_Tile_Size+720, pos.y*Little_Tile_Size+16, pos.x*Little_Tile_Size+dir.x*Little_Tile_Size+720, pos.y*Little_Tile_Size-dir.y*Little_Tile_Size+16, RED);
 }
 
 void MoveForward(void)

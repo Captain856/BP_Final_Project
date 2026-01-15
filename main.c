@@ -22,8 +22,8 @@ int main()
         if(IsKeyDown(KEY_LEFT))TurnLeft();
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawMap();
-        DrawPlayer();
+        DrawLittleMap();
+        DrawLittlePlayer();
         EndDrawing();
     }
     CloseWindow();

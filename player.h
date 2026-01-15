@@ -14,7 +14,8 @@ struct vector2{
 typedef struct vector2 vector2;
 
 void PlayerInit(void);
-void DrawPlayer(void);
+void DrawBigPlayer(void);
+void DrawLittlePlayer(void);
 void MoveForward(void);
 void MoveBackward(void);
 void MoveRight(void);

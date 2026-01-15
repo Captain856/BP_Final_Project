@@ -51,25 +51,42 @@ void MapInit(void)
     World_Map[11][14] = 1;
 }
 
-//Drawing the map
-void DrawMap(void)
+//Drawing the Big map
+void DrawBigMap(void)
 {
     for(int i = 0; i < 16; i++){
         for(int j = 0; j < 16; j++){
             if(World_Map[i][j]==1){
-                DrawRectangle(j*Tile_Size+240, i*Tile_Size+30, Tile_Size, Tile_Size, GRAY);
-                DrawRectangleLines(j*Tile_Size+240, i*Tile_Size+30, Tile_Size, Tile_Size, BLACK);
+                DrawRectangle(j*Big_Tile_Size+240, i*Big_Tile_Size+30, Big_Tile_Size, Big_Tile_Size, GRAY);
+                DrawRectangleLines(j*Big_Tile_Size+240, i*Big_Tile_Size+30, Big_Tile_Size, Big_Tile_Size, BLACK);
             }
             else{
-                DrawRectangle(j*Tile_Size+240, i*Tile_Size+30, Tile_Size, Tile_Size, WHITE);
-                DrawRectangleLines(j*Tile_Size+240, i*Tile_Size+30, Tile_Size, Tile_Size, BLACK);
+                DrawRectangle(j*Big_Tile_Size+240, i*Big_Tile_Size+30, Big_Tile_Size, Big_Tile_Size, WHITE);
+                DrawRectangleLines(j*Big_Tile_Size+240, i*Big_Tile_Size+30, Big_Tile_Size, Big_Tile_Size, BLACK);
             }
         }
     }
 }
 
-//is next wall?
+//Drawing the Little map
+void DrawLittleMap(void)
+{
+    for(int i = 0; i < 16; i++){
+        for(int j = 0; j < 16; j++){
+            if(World_Map[i][j]==1){
+                DrawRectangle(j*Little_Tile_Size+720, i*Little_Tile_Size+16, Little_Tile_Size, Little_Tile_Size, GRAY);
+                DrawRectangleLines(j*Little_Tile_Size+720, i*Little_Tile_Size+16, Little_Tile_Size, Little_Tile_Size, BLACK);
+            }
+            else{
+                DrawRectangle(j*Little_Tile_Size+720, i*Little_Tile_Size+16, Little_Tile_Size, Little_Tile_Size, WHITE);
+                DrawRectangleLines(j*Little_Tile_Size+720, i*Little_Tile_Size+16, Little_Tile_Size, Little_Tile_Size, BLACK);
+            }
+        }
+    }
+}
+
+//is this wall?
 int IsWall(float x, float y)
 {
-    return World_Map[(int)(floor(y/Tile_Size))][(int)(floor(x/Tile_Size))];
+    return World_Map[(int)(floor(y))][(int)(floor(x))];
 }
