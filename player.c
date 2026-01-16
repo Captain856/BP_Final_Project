@@ -3,81 +3,99 @@
 #include <raylib.h>
 #include <math.h>
 
-vector1 pos;
-vector1 dir;
-vector2 plane;
-float bigradius;
-float littleradius;
+Player player;
 float Speed;
 
 void PlayerInit(void)
 {
-    pos.x = 9.5;
-    pos.y = 5.5;
-    dir.x = 0.0;
-    dir.y = 1.0;
-    bigradius = 10;
-    littleradius = 6;
+    player.pos.x = 9.5;
+    player.pos.y = 5.5;
+    player.dir.x = 0.0;
+    player.dir.y = 1.0;
+    player.plane.x = 0.66;
+    player.plane.y = 0.00;
+    return;
 }
 
 void DrawBigPlayer(void)
 {
-    DrawCircle(pos.x*Big_Tile_Size+240, pos.y*Big_Tile_Size+30, bigradius, RED);
-    DrawLine(pos.x*Big_Tile_Size+240, pos.y*Big_Tile_Size+30, pos.x*Big_Tile_Size+dir.x*Big_Tile_Size+240, pos.y*Big_Tile_Size-dir.y*Big_Tile_Size+30, RED);
+    DrawCircle(player.pos.x*Big_Tile_Size+240, player.pos.y*Big_Tile_Size+30, Big_Radius, RED);
+    DrawLine(player.pos.x*Big_Tile_Size+240, player.pos.y*Big_Tile_Size+30, player.pos.x*Big_Tile_Size+player.dir.x*Big_Tile_Size+240, player.pos.y*Big_Tile_Size-player.dir.y*Big_Tile_Size+30, RED);
+    return;
 }
 
 void DrawLittlePlayer(void)
 {
-    DrawCircle(pos.x*Little_Tile_Size+720, pos.y*Little_Tile_Size+16, littleradius, RED);
-    DrawLine(pos.x*Little_Tile_Size+720, pos.y*Little_Tile_Size+16, pos.x*Little_Tile_Size+dir.x*Little_Tile_Size+720, pos.y*Little_Tile_Size-dir.y*Little_Tile_Size+16, RED);
+    DrawCircle(player.pos.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size+16, Little_Radius, RED);
+    DrawLine(player.pos.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size+16, player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size+16, RED);
+    //plane test
+    DrawLine(player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size+16, player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+player.plane.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size-player.plane.y*Little_Tile_Size+16, GREEN);
+    return;
 }
 
 void MoveForward(void)
 {
     Speed = 6;
     float dt = GetFrameTime();
-    if(!IsWall(pos.x + Speed * dt * dir.x, pos.y))pos.x += Speed * dt * dir.x;
-    if(!IsWall(pos.x, pos.y - Speed * dt * dir.y))pos.y -= Speed * dt * dir.y;
+    if(!IsWall(player.pos.x + Speed * dt * player.dir.x, player.pos.y))player.pos.x += Speed * dt * player.dir.x;
+    if(!IsWall(player.pos.x, player.pos.y - Speed * dt * player.dir.y))player.pos.y -= Speed * dt * player.dir.y;
+    return;
 }
 
 void MoveBackward(void)
 {
     Speed = 6;
     float dt = GetFrameTime();
-    if(!IsWall(pos.x - Speed * dt * dir.x, pos.y))pos.x -= Speed * dt * dir.x;
-    if(!IsWall(pos.x, pos.y + Speed * dt * dir.y))pos.y += Speed * dt * dir.y;
+    if(!IsWall(player.pos.x - Speed * dt * player.dir.x, player.pos.y))player.pos.x -= Speed * dt * player.dir.x;
+    if(!IsWall(player.pos.x, player.pos.y + Speed * dt * player.dir.y))player.pos.y += Speed * dt * player.dir.y;
+    return;
 }
 
 void MoveRight(void)
 {
     Speed = 6;
     float dt = GetFrameTime();
-    if(!IsWall(pos.x + Speed * dt * dir.y, pos.y))pos.x += Speed * dt * dir.y;
-    if(!IsWall(pos.x, pos.y + Speed * dt * dir.x))pos.y += Speed * dt * dir.x;
+    if(!IsWall(player.pos.x + Speed * dt * player.dir.y, player.pos.y))player.pos.x += Speed * dt * player.dir.y;
+    if(!IsWall(player.pos.x, player.pos.y + Speed * dt * player.dir.x))player.pos.y += Speed * dt * player.dir.x;
+    return;
 }
 
 void MoveLeft(void)
 {
     Speed = 6;
     float dt = GetFrameTime();
-    if(!IsWall(pos.x - Speed * dt * dir.y, pos.y))pos.x -= Speed * dt * dir.y;
-    if(!IsWall(pos.x, pos.y - Speed * dt * dir.x))pos.y -= Speed * dt * dir.x;
+    if(!IsWall(player.pos.x - Speed * dt * player.dir.y, player.pos.y))player.pos.x -= Speed * dt * player.dir.y;
+    if(!IsWall(player.pos.x, player.pos.y - Speed * dt * player.dir.x))player.pos.y -= Speed * dt * player.dir.x;
+    return;
 }
 
 void TurnRight(void)
 {
     Speed = -4;
     float dt = GetFrameTime();
-    float hold = dir.x;
-    dir.x = dir.x * cos(Speed * dt) - dir.y * sin(Speed * dt);
-    dir.y = hold * sin(Speed * dt) + dir.y * cos(Speed * dt);
+    float hold1 = player.dir.x;
+    player.dir.x = player.dir.x * cos(Speed * dt) - player.dir.y * sin(Speed * dt);
+    player.dir.y = hold1 * sin(Speed * dt) + player.dir.y * cos(Speed * dt);
+    float hold2 = player.plane.x;
+    player.plane.x = player.plane.x * cos(Speed * dt) - player.plane.y * sin(Speed * dt);
+    player.plane.y = hold2 * sin(Speed * dt) + player.plane.y * cos(Speed * dt);
+    return;
 }
 
 void TurnLeft(void)
 {
     Speed = 4;
     float dt = GetFrameTime();
-    float hold = dir.x;
-    dir.x = dir.x * cos(Speed * dt) - dir.y * sin(Speed * dt);
-    dir.y = hold * sin(Speed * dt) + dir.y * cos(Speed * dt);
+    float hold1 = player.dir.x;
+    player.dir.x = player.dir.x * cos(Speed * dt) - player.dir.y * sin(Speed * dt);
+    player.dir.y = hold1 * sin(Speed * dt) + player.dir.y * cos(Speed * dt);
+    float hold2 = player.plane.x;
+    player.plane.x = player.plane.x * cos(Speed * dt) - player.plane.y * sin(Speed * dt);
+    player.plane.y = hold2 * sin(Speed * dt) + player.plane.y * cos(Speed * dt);
+    return;
+}
+
+Player GetPlayer(void)
+{
+    return player;
 }
