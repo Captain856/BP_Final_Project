@@ -49,6 +49,7 @@ void MapInit(void)
     World_Map[11][9] = 1;
     World_Map[11][13] = 1;
     World_Map[11][14] = 1;
+    return;
 }
 
 //Drawing the Big map
@@ -66,6 +67,7 @@ void DrawBigMap(void)
             }
         }
     }
+    return;
 }
 
 //Drawing the Little map
@@ -83,6 +85,7 @@ void DrawLittleMap(void)
             }
         }
     }
+    return;
 }
 
 //is this wall?
