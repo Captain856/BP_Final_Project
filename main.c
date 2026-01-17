@@ -34,12 +34,13 @@ int main()
         ClearBackground(RAYWHITE);
         if(ViewMode == EYE)
         {
-            for(int i = 0; i < ScreenWidth; i++)
+            for(int i = 1; i <= ScreenWidth; i++)
             {
                 RayCast(i, ScreenWidth, ScreenHeight);
             }
             DrawLittleMap();
             DrawLittlePlayer();
+            DrawText("Press 'M' for Map veiw", 730, 242, 19, WHITE);
         }
         if(ViewMode == MAP)
         {
@@ -50,6 +51,12 @@ int main()
                 if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))ToggleWall(GetMouseX(), GetMouseY());
                 if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))ToggleNotWall(GetMouseX(), GetMouseY());
             }
+            DrawText("Press 'M'", 20, 400, 20, BLACK);
+            DrawText("to exit the Map", 20, 425, 20, BLACK);
+            DrawText("mouse left button", 20, 100, 20, BLACK);
+            DrawText("to create a wall", 20, 125, 20, BLACK);
+            DrawText("mouse right button", 20, 175, 20, BLACK);
+            DrawText("to remove a wall", 20, 200, 20, BLACK);
         }
         EndDrawing();
         switch (timer)
