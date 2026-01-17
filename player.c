@@ -27,8 +27,6 @@ void DrawLittlePlayer(void)
 {
     DrawCircle(player.pos.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size+16, Little_Radius, RED);
     DrawLine(player.pos.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size+16, player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size+16, RED);
-    //plane test
-    DrawLine(player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size+16, player.pos.x*Little_Tile_Size+player.dir.x*Little_Tile_Size+player.plane.x*Little_Tile_Size+720, player.pos.y*Little_Tile_Size-player.dir.y*Little_Tile_Size-player.plane.y*Little_Tile_Size+16, GREEN);
     return;
 }
 
