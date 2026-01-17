@@ -61,12 +61,18 @@ int main()
                 if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))ToggleWall(GetMouseX(), GetMouseY());
                 if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))ToggleNotWall(GetMouseX(), GetMouseY());
             }
-            DrawText("Press 'M'", 20, 400, 20, BLACK);
-            DrawText("to exit the Map", 20, 425, 20, BLACK);
-            DrawText("mouse left button", 20, 100, 20, BLACK);
-            DrawText("to create a wall", 20, 125, 20, BLACK);
-            DrawText("mouse right button", 20, 175, 20, BLACK);
-            DrawText("to remove a wall", 20, 200, 20, BLACK);
+            DrawText("Press 'M'", 23, 403, 20, (Color){0, 0, 0, 150});
+            DrawText("to exit the Map", 23, 428, 20, (Color){0, 0, 0, 150});
+            DrawText("mouse left button", 23, 103, 20, (Color){0, 0, 0, 150});
+            DrawText("to create a wall", 23, 128, 20, (Color){0, 0, 0, 150});
+            DrawText("mouse right button", 23, 178, 20, (Color){0, 0, 0, 150});
+            DrawText("to remove a wall", 23, 203, 20, (Color){0, 0, 0, 150});
+            DrawText("Press 'M'", 20, 400, 20, WHITE);
+            DrawText("to exit the Map", 20, 425, 20, WHITE);
+            DrawText("mouse left button", 20, 100, 20, WHITE);
+            DrawText("to create a wall", 20, 125, 20, WHITE);
+            DrawText("mouse right button", 20, 175, 20, WHITE);
+            DrawText("to remove a wall", 20, 200, 20, WHITE);
         }
         EndDrawing();
         switch (timer1)
