@@ -5,8 +5,16 @@
 #include "player.h"
 #include "raycaster.h"
 
+typedef enum
+{
+    TUTORIAL,
+    MAP,
+    EYE
+} GameStatus;
+
 int main()
 {
+    GameStatus ViewMode = EYE;
     MapInit();
     PlayerInit();
     const int ScreenWidth = 960;
@@ -23,13 +31,26 @@ int main()
         if(IsKeyDown(KEY_LEFT))TurnLeft();
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        for(int i = 0; i < ScreenWidth; i++)
+        if(ViewMode == EYE)
         {
-            RayCast(i, ScreenWidth, ScreenHeight);
+            for(int i = 0; i < ScreenWidth; i++)
+            {
+                RayCast(i, ScreenWidth, ScreenHeight);
+            }
+            DrawLittleMap();
+            DrawLittlePlayer();
         }
-        DrawLittleMap();
-        DrawLittlePlayer();
+        if(ViewMode == MAP)
+        {
+            DrawBigMap();
+            DrawBigPlayer();
+        }
         EndDrawing();
+        if(IsKeyDown(KEY_M))
+        {
+            if(ViewMode == MAP) ViewMode = EYE;
+            else ViewMode = MAP;
+        }
     }
     CloseWindow();
     
