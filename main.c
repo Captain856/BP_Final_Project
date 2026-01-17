@@ -34,7 +34,6 @@ int main()
         if(IsKeyDown(KEY_RIGHT))TurnRight();
         if(IsKeyDown(KEY_LEFT))TurnLeft();
         BeginDrawing();
-        ClearBackground(RAYWHITE);
         if(ViewMode == TUTORIAL)
         {
             timer2 = WelcomePage(timer2);
@@ -43,6 +42,7 @@ int main()
         }
         if(ViewMode == EYE)
         {
+            ClearBackground(RAYWHITE);
             for(int i = 1; i <= ScreenWidth; i++)
             {
                 RayCast(i, ScreenWidth, ScreenHeight);
@@ -53,6 +53,7 @@ int main()
         }
         if(ViewMode == MAP)
         {
+            ClearBackground((Color){106, 120, 48, 255});
             DrawBigMap();
             DrawBigPlayer();
             if(GetMouseX()>269 && GetMouseX()<691 && GetMouseY()>59 && GetMouseY()<481)
