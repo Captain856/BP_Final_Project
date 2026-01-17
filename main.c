@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <raylib.h>
-#include <time.h>
 #include "map.h"
 #include "player.h"
 #include "raycaster.h"
@@ -46,6 +45,11 @@ int main()
         {
             DrawBigMap();
             DrawBigPlayer();
+            if(GetMouseX()>269 && GetMouseX()<691 && GetMouseY()>59 && GetMouseY()<481)
+            {
+                if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))ToggleWall(GetMouseX(), GetMouseY());
+                if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))ToggleNotWall(GetMouseX(), GetMouseY());
+            }
         }
         EndDrawing();
         switch (timer)

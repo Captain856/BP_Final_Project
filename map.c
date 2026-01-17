@@ -93,3 +93,21 @@ int IsWall(float x, float y)
 {
     return World_Map[(int)(floor(y))][(int)(floor(x))];
 }
+
+//toggle a not wall to a wall
+void ToggleWall(int X, int Y)
+{
+    X = (X - 240)/Big_Tile_Size;
+    Y = (Y - 30)/Big_Tile_Size;
+    if(World_Map[Y][X]==0) World_Map[Y][X] = 1;
+    return;
+}
+
+//toggle a wall to a not wall
+void ToggleNotWall(int X, int Y)
+{
+    X = (X - 240)/Big_Tile_Size;
+    Y = (Y - 30)/Big_Tile_Size;
+    if(World_Map[Y][X]==1) World_Map[Y][X] = 0;
+    return;
+}
