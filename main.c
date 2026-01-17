@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <raylib.h>
+#include <time.h>
 #include "map.h"
 #include "player.h"
 #include "raycaster.h"
@@ -14,13 +15,14 @@ typedef enum
 
 int main()
 {
-    GameStatus ViewMode = EYE;
     MapInit();
     PlayerInit();
     const int ScreenWidth = 960;
     const int ScreenHeight = 540;
     InitWindow(ScreenWidth, ScreenHeight, "Prisoner of the Garden");
     SetTargetFPS(60);
+    GameStatus ViewMode = EYE;
+    int timer = 0;
     while (!WindowShouldClose())
     {
         if(IsKeyDown(KEY_W))MoveForward();
@@ -46,10 +48,24 @@ int main()
             DrawBigPlayer();
         }
         EndDrawing();
-        if(IsKeyDown(KEY_M))
+        switch (timer)
         {
-            if(ViewMode == MAP) ViewMode = EYE;
-            else ViewMode = MAP;
+            case 0:
+                if(IsKeyDown(KEY_M))
+                {
+                    if(ViewMode == MAP) ViewMode = EYE;
+                    else ViewMode = MAP;
+                    timer = 1;
+                }
+                break;
+            
+            case 15:
+                timer = 0;
+                break;
+
+            default:
+                timer++;
+                break;
         }
     }
     CloseWindow();
