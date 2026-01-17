@@ -3,6 +3,8 @@
 
 #define Big_Radius 10
 #define Little_Radius 6
+#define Speed 6
+#define TurnSpeed 4
 
 struct vector{
     double x;

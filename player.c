@@ -4,7 +4,6 @@
 #include <math.h>
 
 Player player;
-float Speed;
 
 void PlayerInit(void)
 {
@@ -35,7 +34,6 @@ void DrawLittlePlayer(void)
 
 void MoveForward(void)
 {
-    Speed = 6;
     float dt = GetFrameTime();
     if(!IsWall(player.pos.x + Speed * dt * player.dir.x, player.pos.y))player.pos.x += Speed * dt * player.dir.x;
     if(!IsWall(player.pos.x, player.pos.y - Speed * dt * player.dir.y))player.pos.y -= Speed * dt * player.dir.y;
@@ -44,7 +42,6 @@ void MoveForward(void)
 
 void MoveBackward(void)
 {
-    Speed = 6;
     float dt = GetFrameTime();
     if(!IsWall(player.pos.x - Speed * dt * player.dir.x, player.pos.y))player.pos.x -= Speed * dt * player.dir.x;
     if(!IsWall(player.pos.x, player.pos.y + Speed * dt * player.dir.y))player.pos.y += Speed * dt * player.dir.y;
@@ -53,7 +50,6 @@ void MoveBackward(void)
 
 void MoveRight(void)
 {
-    Speed = 6;
     float dt = GetFrameTime();
     if(!IsWall(player.pos.x + Speed * dt * player.dir.y, player.pos.y))player.pos.x += Speed * dt * player.dir.y;
     if(!IsWall(player.pos.x, player.pos.y + Speed * dt * player.dir.x))player.pos.y += Speed * dt * player.dir.x;
@@ -62,7 +58,6 @@ void MoveRight(void)
 
 void MoveLeft(void)
 {
-    Speed = 6;
     float dt = GetFrameTime();
     if(!IsWall(player.pos.x - Speed * dt * player.dir.y, player.pos.y))player.pos.x -= Speed * dt * player.dir.y;
     if(!IsWall(player.pos.x, player.pos.y - Speed * dt * player.dir.x))player.pos.y -= Speed * dt * player.dir.x;
@@ -71,27 +66,25 @@ void MoveLeft(void)
 
 void TurnRight(void)
 {
-    Speed = -4;
     float dt = GetFrameTime();
     float hold1 = player.dir.x;
-    player.dir.x = player.dir.x * cos(Speed * dt) - player.dir.y * sin(Speed * dt);
-    player.dir.y = hold1 * sin(Speed * dt) + player.dir.y * cos(Speed * dt);
+    player.dir.x = player.dir.x * cos(-TurnSpeed * dt) - player.dir.y * sin(-TurnSpeed * dt);
+    player.dir.y = hold1 * sin(-TurnSpeed * dt) + player.dir.y * cos(-TurnSpeed * dt);
     float hold2 = player.plane.x;
-    player.plane.x = player.plane.x * cos(Speed * dt) - player.plane.y * sin(Speed * dt);
-    player.plane.y = hold2 * sin(Speed * dt) + player.plane.y * cos(Speed * dt);
+    player.plane.x = player.plane.x * cos(-TurnSpeed * dt) - player.plane.y * sin(-TurnSpeed * dt);
+    player.plane.y = hold2 * sin(-TurnSpeed * dt) + player.plane.y * cos(-TurnSpeed * dt);
     return;
 }
 
 void TurnLeft(void)
 {
-    Speed = 4;
     float dt = GetFrameTime();
     float hold1 = player.dir.x;
-    player.dir.x = player.dir.x * cos(Speed * dt) - player.dir.y * sin(Speed * dt);
-    player.dir.y = hold1 * sin(Speed * dt) + player.dir.y * cos(Speed * dt);
+    player.dir.x = player.dir.x * cos(TurnSpeed * dt) - player.dir.y * sin(TurnSpeed * dt);
+    player.dir.y = hold1 * sin(TurnSpeed * dt) + player.dir.y * cos(TurnSpeed * dt);
     float hold2 = player.plane.x;
-    player.plane.x = player.plane.x * cos(Speed * dt) - player.plane.y * sin(Speed * dt);
-    player.plane.y = hold2 * sin(Speed * dt) + player.plane.y * cos(Speed * dt);
+    player.plane.x = player.plane.x * cos(TurnSpeed * dt) - player.plane.y * sin(TurnSpeed * dt);
+    player.plane.y = hold2 * sin(TurnSpeed * dt) + player.plane.y * cos(TurnSpeed * dt);
     return;
 }
 
