@@ -4,6 +4,7 @@
 #include <math.h>
 
 Player player;
+int Speed = 3;
 
 void PlayerInit(void)
 {
@@ -83,6 +84,34 @@ void TurnLeft(void)
     float hold2 = player.plane.x;
     player.plane.x = player.plane.x * cos(TurnSpeed * dt) - player.plane.y * sin(TurnSpeed * dt);
     player.plane.y = hold2 * sin(TurnSpeed * dt) + player.plane.y * cos(TurnSpeed * dt);
+    return;
+}
+
+void ToggleSpeed(void)
+{
+    if(Speed == 5){Speed = 7;}
+    if(Speed == 7){Speed = 3;}
+    if(Speed == 3){Speed = 5;}
+    return;
+}
+
+void DrawSpeed(void)
+{
+    if(Speed == 5)
+    {
+        DrawText("Speed : Medium", 13, 13, 20, (Color){0, 0, 0, 150});
+        DrawText("Speed : Medium", 10, 10, 20, WHITE);
+    }
+    if(Speed == 7)
+    {
+        DrawText("Speed : High", 13, 13, 20, (Color){0, 0, 0, 150});
+        DrawText("Speed : High", 10, 10, 20, WHITE);
+    }
+    if(Speed == 3)
+    {
+        DrawText("Speed : Low", 13, 13, 20, (Color){0, 0, 0, 150});
+        DrawText("Speed : Low", 10, 10, 20, WHITE);
+    }
     return;
 }
 
