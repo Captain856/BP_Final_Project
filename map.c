@@ -1,4 +1,5 @@
 #include "map.h"
+#include "player.h"
 #include <raylib.h>
 #include <math.h>
 
@@ -97,8 +98,10 @@ int IsWall(float x, float y)
 //toggle a not wall to a wall
 void ToggleWall(int X, int Y)
 {
+    Player player = GetPlayer();
     X = (X - 240)/Big_Tile_Size;
     Y = (Y - 30)/Big_Tile_Size;
+    if((int)(player.pos.x) == X && (int)(player.pos.y) == Y)return;
     if(World_Map[Y][X]==0) World_Map[Y][X] = 1;
     return;
 }

@@ -51,7 +51,6 @@ int main()
             DrawLittlePlayer();
             DrawText("Press 'M' for Map veiw", 733, 245, 19, (Color){0, 0, 0, 150});
             DrawText("Press 'M' for Map veiw", 730, 242, 19, WHITE);
-            DrawSpeed();
         }
         if(ViewMode == MAP)
         {
