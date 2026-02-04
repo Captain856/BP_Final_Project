@@ -25,7 +25,6 @@ int main()
     GameStatus ViewMode = TUTORIAL;
     int timer1 = 0;
     int timer2 = 0;
-    int timer3 = 0;
     while (!WindowShouldClose())
     {
         if(IsKeyDown(KEY_W))MoveForward();
@@ -97,24 +96,6 @@ int main()
                 timer1++;
                 break;
         }
-        switch (timer3)
-        {
-            case 0:
-                if(IsKeyDown(KEY_V))
-                {
-                    ToggleSpeed();
-                    timer3 = 1;
-                }
-                break;
-            
-            case 15:
-                timer3 = 0;
-                break;
-
-            default:
-                timer3++;
-                break;
-        }
     }
     CloseWindow();
     
@@ -142,8 +123,6 @@ int WelcomePage(int timer)
         DrawText("use 'W', 'A', 'S' and 'D' to move in the Garden", 70, 130, 30, WHITE);
         DrawText("use '<-' and '->' to turn around", 73, 173, 30, (Color){0, 0, 0, 150});
         DrawText("use '<-' and '->' to turn around", 70, 170, 30, WHITE);
-        DrawText("use 'V' to change your speed", 73, 213, 30, (Color){0, 0, 0, 150});
-        DrawText("use 'V' to change your speed", 70, 210, 30, WHITE);
         DrawText("when ready, press 'Space'", 73, 453, 30, (Color){0, 0, 0, 150});
         DrawText("when ready, press 'Space'", 70, 450, 30, WHITE);
         return timer-1;

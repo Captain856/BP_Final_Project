@@ -3,9 +3,6 @@
 
 #define Big_Radius 10
 #define Little_Radius 6
-#define LowSpeed 3
-#define MediumSpeed 5
-#define HighSpeed 7
 #define TurnSpeed 4
 
 struct vector{
@@ -30,8 +27,6 @@ void MoveRight(void);
 void MoveLeft(void);
 void TurnRight(void);
 void TurnLeft(void);
-void ToggleSpeed(void);
-void DrawSpeed(void);
 Player GetPlayer(void);
 
 #endif
