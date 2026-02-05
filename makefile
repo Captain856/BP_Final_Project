@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -std=c99 -I./include
-LDFLAGS = -L./lib -lraylib -lm -lopengl32 -lgdi32 -lwinmm
+CFLAGS = -Wall -std=c99 -I./src/include
+LDFLAGS = -L./src/lib -lraylib -lm -lopengl32 -lgdi32 -lwinmm
 
-game.exe: main.c map.c player.c raycaster.c
+game.exe: src/main.c src/map.c src/player.c src/raycaster.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS)
